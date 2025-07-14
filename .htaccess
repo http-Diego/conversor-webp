@@ -1,0 +1,13 @@
+# Impede listagem de diretórios
+Options -Indexes
+
+# Protege arquivos sensíveis
+<FilesMatch "\.(env|ini|log|sh|bak|sql|swp|htaccess)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# Força HTTPS (opcional, remova se não usar SSL)
+# RewriteEngine On
+# RewriteCond %{HTTPS} off
+# RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L] 

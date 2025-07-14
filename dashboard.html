@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Conversor WebP</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Menu Hambúrguer Universal -->
+  <nav class="main-nav">
+    <div class="nav-content">
+      <div class="logo-area">
+        <a href="index.html"><img src="https://www.teamkeepup.com.br/wp-content/uploads/2025/05/logo-teamkeepup@512x.png" alt="Logo TeamKeepUp" class="logo-img logo-light" /></a>
+      </div>
+      <div class="nav-icons">
+        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu"><span id="menu-icon">☰</span></button>
+      </div>
+    </div>
+  </nav>
+  <div class="menu-overlay" id="menu-overlay"></div>
+  <aside class="side-drawer" id="side-drawer">
+    <nav class="drawer-nav">
+      <a href="index.html" class="drawer-link">Conversor</a>
+      <a href="dashboard.html" class="drawer-link active">Minhas Imagens</a>
+      <a href="conta.html" class="drawer-link">Minha Conta</a>
+      <a href="sobre.html" class="drawer-link">Sobre</a>
+      <button id="drawer-logout" class="drawer-link logout-btn">Sair</button>
+    </nav>
+  </aside>
+  <main class="container user-dashboard" style="margin-top:72px;">
+    <div class="dashboard-container">
+      <aside class="dashboard-menu" style="display:none;"></aside>
+      <main class="dashboard-main">
+        <h2>Minhas Imagens WebP</h2>
+        <div class="storage-stats"></div>
+        <div id="dashboard-user-images-list" class="user-images-list"></div>
+        <small>Limite: 15 imagens. As mais antigas serão substituídas automaticamente.</small>
+      </main>
+    </div>
+  </main>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Menu hambúrguer universal
+    const menuToggle = document.getElementById('menu-toggle');
+    const sideDrawer = document.getElementById('side-drawer');
+    const menuOverlay = document.getElementById('menu-overlay');
+    const menuIcon = document.getElementById('menu-icon');
+    menuToggle.addEventListener('click', () => {
+      sideDrawer.classList.toggle('open');
+      menuOverlay.classList.toggle('open');
+      menuIcon.textContent = sideDrawer.classList.contains('open') ? '✕' : '☰';
+    });
+    menuOverlay.addEventListener('click', () => {
+      sideDrawer.classList.remove('open');
+      menuOverlay.classList.remove('open');
+      menuIcon.textContent = '☰';
+    });
+    document.querySelectorAll('.drawer-link').forEach(link => {
+      link.addEventListener('click', () => {
+        sideDrawer.classList.remove('open');
+        menuOverlay.classList.remove('open');
+        menuIcon.textContent = '☰';
+      });
+    });
+    // Logout
+    document.getElementById('drawer-logout').onclick = function() {
+      if (window.authManager) window.authManager.signOut();
+    };
+  </script>
+</body>
+</html> 
