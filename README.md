@@ -1,3 +1,42 @@
+# Conversor WebP Online – TeamKeepUp
+
+Ferramenta web moderna para converter imagens JPG, PNG e WebP para o formato WebP, com foco em performance, usabilidade e integração com Firebase.
+
+## Funcionalidades já desenvolvidas
+- Conversão de imagens JPG, PNG e WebP para WebP (upload e preview).
+- Interface responsiva, com menu mobile, cards informativos e painel de imagens do usuário.
+- Alternância de tema claro/escuro com animação SVG e persistência via localStorage.
+- Login com Google via Firebase Auth, painel de usuário e limite de 15 imagens por usuário.
+- Armazenamento de imagens no Firebase Storage, com listagem, download e exclusão.
+- SEO avançado: metadados, Open Graph, Twitter Card, favicon, canonical, JSON-LD.
+- Acessibilidade: labels, aria-labels, navegação por teclado.
+- CSS modular, dark mode, animações, z-index ajustado para menu/overlay.
+- Documentação de setup Firebase (FIREBASE_SETUP.md).
+- Scripts organizados: `main.js`, `theme.js`, `auth.js`, `storage.js`.
+
+## O que pode ser desenvolvido
+- Conversão real para WebP client-side (canvas ou bibliotecas JS).
+- Barra de progresso visual durante upload/conversão.
+- Notificações detalhadas de erro/sucesso.
+- Filtros, ordenação, busca e visualização avançada das imagens do usuário.
+- Configurações de conversão: ajuste de qualidade, resolução, formato de saída.
+- PWA (manifest.json, service worker, uso offline).
+- Testes automatizados (conversão, upload, login, UI).
+- Painel admin para monitoramento e gestão de usuários.
+- Internacionalização (i18n) para múltiplos idiomas.
+- Analytics para monitorar uso.
+- Melhorias de acessibilidade (leitores de tela, contraste, navegação tab).
+
+## Como rodar o projeto
+1. Clone o repositório e configure o Firebase conforme o FIREBASE_SETUP.md.
+2. Edite `js/firebase-config.js` com suas credenciais.
+3. Abra `index.html` em um servidor local ou publique em hospedagem estática.
+
+## Roadmap
+Consulte a seção acima para próximos passos e sugestões de evolução.
+
+---
+Projeto desenvolvido por TeamKeepUp. Sugestões, issues e PRs são bem-vindos!
 # Conversor de Imagens para WebP Online - Documentação de Implementação
 
 ## Melhorias Realizadas e Planejadas
