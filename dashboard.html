@@ -46,33 +46,6 @@
   <script src="js/storage.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/main.js"></script>
-  <script>
-    // Menu hambúrguer universal
-    const menuToggle = document.getElementById('menu-toggle');
-    const sideDrawer = document.getElementById('side-drawer');
-    const menuOverlay = document.getElementById('menu-overlay');
-    const menuIcon = document.getElementById('menu-icon');
-    menuToggle.addEventListener('click', () => {
-      sideDrawer.classList.toggle('open');
-      menuOverlay.classList.toggle('open');
-      menuIcon.textContent = sideDrawer.classList.contains('open') ? '✕' : '☰';
-    });
-    menuOverlay.addEventListener('click', () => {
-      sideDrawer.classList.remove('open');
-      menuOverlay.classList.remove('open');
-      menuIcon.textContent = '☰';
-    });
-    document.querySelectorAll('.drawer-link').forEach(link => {
-      link.addEventListener('click', () => {
-        sideDrawer.classList.remove('open');
-        menuOverlay.classList.remove('open');
-        menuIcon.textContent = '☰';
-      });
-    });
-    // Logout
-    document.getElementById('drawer-logout').onclick = function() {
-      if (window.authManager) window.authManager.signOut();
-    };
   </script>
 </body>
 </html> 
