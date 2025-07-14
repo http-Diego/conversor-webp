@@ -759,7 +759,7 @@ footer {
     width: 100vw;
     height: calc(100vh - 56px);
     background: #0008;
-    z-index: 1100;
+    z-index: 1;
   }
   .menu-overlay.open {
     display: block;
