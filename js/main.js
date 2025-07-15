@@ -157,6 +157,7 @@ function convertToWebP(file, quality = 0.92) {
             // Atualizar painel de imagens do usuário
             window.authManager.loadUserImages();
             
+            console.log('Imagem salva com sucesso:', file.name);
             // Mostrar notificação de sucesso
             showSuccessNotification('Imagem salva automaticamente!');
           } catch (error) {
