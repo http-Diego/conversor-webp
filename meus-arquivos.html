@@ -7,29 +7,8 @@
   <link rel="stylesheet" href="assets/css/style.css?v=2.0">
 </head>
 <body>
-  <nav class="main-nav">
-    <div class="nav-content">
-      <div class="logo-area">
-        <a href="index.html">
-          <img src="https://www.teamkeepup.com.br/wp-content/uploads/2025/05/logo-teamkeepup@512x.png" alt="Logo TeamKeepUp" class="logo-img logo-light" />
-          <img src="https://www.teamkeepup.com.br/wp-content/uploads/2025/05/logo-teamkeepup-Light.png" alt="Logo TeamKeepUp" class="logo-img logo-dark" />
-        </a>
-      </div>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="index.html#upload-area">Conversor</a></li>
-        <li><a href="meus-arquivos.html">Meus Arquivos</a></li>
-        <li><a href="sobre.html">Sobre</a></li>
-      </ul>
-      <div class="nav-actions">
-        <div id="user-info" class="user-info hidden">
-          <img id="user-photo" alt="Foto do usuário" class="user-photo" />
-          <span id="user-name"></span>
-          <button id="logout-btn" class="logout-btn">Sair</button>
-        </div>
-        <button id="login-btn-desktop" class="login-btn">Entrar com Google</button>
-      </div>
-    </div>
-  </nav>
+  <!-- Menu dinâmico -->
+  <div id="main-menu-container"></div>
   <main class="container">
     <section id="user-files-panel" class="user-images-panel">
       <h2>Meus Arquivos WebP</h2>
@@ -56,6 +35,18 @@
   <script src="js/auth.js"></script>
   <script src="js/main.js"></script>
   <script src="js/theme.js"></script>
+  <script src="assets/components/menu.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      renderMenu({
+        showConversor: true,
+        showMeusArquivos: true,
+        showSobre: true,
+        showLogin: true,
+        showLogout: false
+      });
+    });
+  </script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Aguarda o carregamento do AuthManager

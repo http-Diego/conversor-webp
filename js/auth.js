@@ -67,7 +67,6 @@ class AuthManager {
     const userName = document.getElementById('user-name');
     const loginBtns = document.querySelectorAll('#login-btn, #login-btn-desktop');
     const userImagesPanel = document.getElementById('user-files-panel');
-    const meusArquivosMenu = document.getElementById('meus-arquivos-menu');
 
     if (user) {
       // Usuário logado
@@ -87,19 +86,6 @@ class AuthManager {
         this.loadUserImages();
       }
 
-      // Mostrar ou ocultar menu "Meus Arquivos" conforme existência de arquivos convertidos
-      if (meusArquivosMenu) {
-        window.storageManager.getUserImages(user.uid).then(images => {
-          if (images && images.length > 0) {
-            meusArquivosMenu.classList.remove('hidden');
-          } else {
-            meusArquivosMenu.classList.add('hidden');
-          }
-        }).catch(() => {
-          meusArquivosMenu.classList.add('hidden');
-        });
-      }
-
     } else {
       // Usuário não logado
       console.log('Usuário não logado');
@@ -113,11 +99,6 @@ class AuthManager {
       // Ocultar painel de imagens do usuário
       if (userImagesPanel) {
         userImagesPanel.classList.add('hidden');
-      }
-
-      // Ocultar menu "Meus Arquivos" para usuário não logado
-      if (meusArquivosMenu) {
-        meusArquivosMenu.classList.add('hidden');
       }
     }
   }
@@ -321,11 +302,6 @@ class AuthManager {
 
 // Inicializar quando o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', () => {
-  // Ocultar o menu "Meus Arquivos" por padrão ao carregar a página
-  const meusArquivosMenu = document.getElementById('meus-arquivos-menu');
-  if (meusArquivosMenu) {
-    meusArquivosMenu.classList.add('hidden');
-  }
   // Aguardar o Firebase estar carregado
   if (typeof firebase !== 'undefined') {
     window.authManager = new AuthManager();
