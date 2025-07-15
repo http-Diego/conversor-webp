@@ -75,7 +75,7 @@ class AuthManager {
       // Mostrar informações do usuário
       userInfo.classList.remove('hidden');
       userPhoto.src = user.photoURL || 'assets/default-avatar.png';
-      userName.textContent = user.displayName || user.email;
+      if (userName) userName.textContent = user.displayName || user.email;
 
       // Ocultar botões de login
       loginBtns.forEach(btn => btn.classList.add('hidden'));
