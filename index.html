@@ -29,7 +29,7 @@
   <meta name="twitter:image" content="https://teamkeepup.com.br/preview.webp">
 
   <!-- Fonte e Estilo -->
-  <link rel="stylesheet" href="assets/css/style.css?v=3.0">
+  <link rel="stylesheet" href="assets/css/style.css?v=2.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -66,13 +66,7 @@
           <img src="https://www.teamkeepup.com.br/wp-content/uploads/2025/05/logo-teamkeepup-Light.png" alt="Logo TeamKeepUp" class="logo-img logo-dark" />
         </a>
       </div>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#upload-area">Conversor</a></li>
-        <li><a href="#user-images-panel">Minhas Imagens</a></li>
-        <li><a href="sobre.html">Sobre</a></li>
-      </ul>
-      <div class="nav-actions">
-        <button class="login-trigger login-btn" id="login-trigger">Inicia a sessão</button>
+      <div class="nav-icons">
         <div class="theme-toggle" id="theme-toggle">
           <input type="checkbox" id="switcher" class="check" aria-label="Alternar tema">
           <label for="switcher" class="theme-switch-label">
@@ -95,28 +89,27 @@
             </svg>
           </label>
         </div>
+        <span class="nav-menu-label">Menu</span>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu"><span id="menu-icon">☰</span></button>
+      </div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#upload-area">Conversor</a></li>
+        <li><a href="#user-images-panel">Minhas Imagens</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li class="login-mobile"><button id="login-btn" class="login-btn">Entrar com Google</button></li>
+      </ul>
+      <div class="nav-actions">
+        <div id="user-info" class="user-info hidden">
+          <img id="user-photo" alt="Foto do usuário" class="user-photo" />
+          <span id="user-name"></span>
+          <button id="logout-btn" class="logout-btn">Sair</button>
+        </div>
+        <!-- O botão de login permanece aqui para desktop, mas será oculto no mobile pelo CSS -->
+        <button id="login-btn-desktop" class="login-btn">Entrar com Google</button>
       </div>
     </div>
   </nav>
-  <div class="login-modal-overlay hidden" id="login-modal-overlay"></div>
-  <div class="login-modal hidden" id="login-modal">
-    <button class="close-modal" id="close-modal" aria-label="Fechar">×</button>
-    <h2>Iniciar a sessão</h2>
-    <form id="login-form" class="login-form">
-      <input type="email" id="login-email" placeholder="E-mail" required autocomplete="email" />
-      <input type="password" id="login-password" placeholder="Palavra-passe" required autocomplete="current-password" />
-      <button type="submit" class="login-btn-main">Iniciar a sessão</button>
-      <div class="login-social">
-        <button type="button" class="login-btn-social google" id="login-google" aria-label="Entrar com Google">
-          <svg width="22" height="22" viewBox="0 0 48 48"><path fill="#4285F4" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.5l6.8-6.8C35.7 2.7 30.2 0 24 0 14.6 0 6.4 5.7 2.5 14.1l8.1 6.3C12.7 14.1 17.9 9.5 24 9.5z"/><path fill="#34A853" d="M46.1 24.6c0-1.6-.1-3.1-.4-4.6H24v9h12.4c-.5 2.7-2.1 5-4.3 6.5l6.8 5.3c4-3.7 6.2-9.1 6.2-15.2z"/><path fill="#FBBC05" d="M10.6 28.4c-.6-1.7-.9-3.5-.9-5.4s.3-3.7.9-5.4l-8.1-6.3C.9 14.7 0 19.2 0 24s.9 9.3 2.5 13.7l8.1-6.3z"/><path fill="#EA4335" d="M24 48c6.2 0 11.4-2 15.2-5.5l-6.8-5.3c-2 1.3-4.6 2.1-8.4 2.1-6.1 0-11.3-4.6-13.1-10.7l-8.1 6.3C6.4 42.3 14.6 48 24 48z"/></svg>
-        </button>
-      </div>
-      <div class="login-actions">
-        <button type="button" class="register-btn" id="register-btn">Registar-se</button>
-        <button type="button" class="forgot-btn" id="forgot-btn">Esqueceu a senha?</button>
-      </div>
-    </form>
-  </div>
+  <div class="menu-overlay" id="menu-overlay"></div>
   <main class="container">
     <!-- Removido: Área de Login Google duplicada -->
 
