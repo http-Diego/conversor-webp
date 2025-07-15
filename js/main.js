@@ -31,9 +31,16 @@ document.addEventListener('DOMContentLoaded', function() {
         window.firebase.auth().signInWithPopup(provider)
           .then(result => {
             closeLoginModal();
+            // Dispara evento customizado para integração com outros scripts
+            const user = result.user;
+            const event = new CustomEvent('googleLoginSuccess', { detail: { user } });
+            window.dispatchEvent(event);
             // Opcional: mostrar notificação de sucesso
           })
           .catch(error => {
+            // Dispara evento de erro para integração
+            const event = new CustomEvent('googleLoginError', { detail: { error } });
+            window.dispatchEvent(event);
             alert('Erro ao autenticar com Google: ' + error.message);
           });
       } else {
