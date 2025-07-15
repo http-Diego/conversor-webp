@@ -47,7 +47,8 @@
         showMeusArquivos: true,
         showSobre: true,
         showLogin: false,
-        showLogout: false
+        showLogout: false,
+        onLogin: () => window.authManager && window.authManager.signInWithGoogle()
       });
     });
   </script>
