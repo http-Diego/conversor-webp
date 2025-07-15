@@ -38,14 +38,32 @@
   <script src="assets/components/menu.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      renderMenu({
-        showConversor: true,
-        showMeusArquivos: true,
-        showSobre: true,
-        showLogin: true,
-        showLogout: false,
-        onLogin: () => window.authManager && window.authManager.signInWithGoogle()
-      });
+      function updateMenuByAuth(user) {
+        renderMenu({
+          showConversor: true,
+          showMeusArquivos: true,
+          showSobre: true,
+          showLogin: !user,
+          showLogout: !!user,
+          userName: user ? (user.displayName || user.email) : '',
+          userPhoto: user ? (user.photoURL || 'assets/default-avatar.png') : '',
+          onLogin: () => window.authManager && window.authManager.signInWithGoogle(),
+          onLogout: () => window.authManager && window.authManager.signOut()
+        });
+      }
+      if (window.authManager && window.authManager.getCurrentUser) {
+        updateMenuByAuth(window.authManager.getCurrentUser());
+        window.firebaseAuth.onAuthStateChanged(updateMenuByAuth);
+      } else {
+        renderMenu({
+          showConversor: true,
+          showMeusArquivos: true,
+          showSobre: true,
+          showLogin: true,
+          showLogout: false,
+          onLogin: () => window.authManager && window.authManager.signInWithGoogle()
+        });
+      }
     });
   </script>
   <script>
