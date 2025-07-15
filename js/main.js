@@ -296,7 +296,7 @@ function isMobile() {
 function moveNavActionsToMenu(open) {
   if (!navActions) return;
   if (open && isMobile()) {
-    if (navLinks && !navLinks.contains(navActions)) {
+    if (!navLinks.contains(navActions)) {
       navLinks.appendChild(navActions);
     }
   } else {
@@ -308,14 +308,13 @@ function moveNavActionsToMenu(open) {
 }
 
 // Garante que o menu começa fechado
-if (navLinks) navLinks.classList.remove('open');
-if (menuOverlay) menuOverlay.classList.remove('open');
-if (menuToggle) menuToggle.classList.remove('open');
-if (menuIcon) menuIcon.textContent = '☰';
+navLinks.classList.remove('open');
+menuOverlay.classList.remove('open');
+menuToggle.classList.remove('open');
+menuIcon.textContent = '☰';
 moveNavActionsToMenu(false);
 
 menuToggle.addEventListener('click', () => {
-  if (!navLinks || !menuOverlay || !menuToggle || !menuIcon) return;
   const isOpen = !navLinks.classList.contains('open');
   navLinks.classList.toggle('open');
   menuOverlay.classList.toggle('open');
@@ -325,20 +324,20 @@ menuToggle.addEventListener('click', () => {
 });
 
 menuOverlay.addEventListener('click', () => {
-  if (navLinks) navLinks.classList.remove('open');
-  if (menuOverlay) menuOverlay.classList.remove('open');
-  if (menuToggle) menuToggle.classList.remove('open');
-  if (menuIcon) menuIcon.textContent = '☰';
+  navLinks.classList.remove('open');
+  menuOverlay.classList.remove('open');
+  menuToggle.classList.remove('open');
+  menuIcon.textContent = '☰';
   moveNavActionsToMenu(false);
 });
 
 // Fecha menu ao clicar em um link
 document.querySelectorAll('.nav-links a').forEach(link => {
   link.addEventListener('click', () => {
-    if (navLinks) navLinks.classList.remove('open');
-    if (menuOverlay) menuOverlay.classList.remove('open');
-    if (menuToggle) menuToggle.classList.remove('open');
-    if (menuIcon) menuIcon.textContent = '☰';
+    navLinks.classList.remove('open');
+    menuOverlay.classList.remove('open');
+    menuToggle.classList.remove('open');
+    menuIcon.textContent = '☰';
     moveNavActionsToMenu(false);
   });
 });
