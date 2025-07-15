@@ -153,6 +153,7 @@ class LocalStorageManager {
 
       request.onsuccess = () => {
         const images = request.result.sort((a, b) => b.timestamp - a.timestamp);
+    console.log('Imagens recuperadas do IndexedDB:', images);
         resolve(images);
       };
       request.onerror = () => reject(request.error);
@@ -164,6 +165,7 @@ class LocalStorageManager {
       try {
         const key = `webp_images_${userId}`;
         const images = JSON.parse(localStorage.getItem(key) || '[]');
+    console.log('Imagens recuperadas do LocalStorage:', images);
         resolve(images.sort((a, b) => b.timestamp - a.timestamp));
       } catch (error) {
         console.error('Erro ao ler do LocalStorage:', error);
@@ -200,14 +202,12 @@ class LocalStorageManager {
   deleteFromLocalStorage(imageId) {
     return new Promise((resolve) => {
       try {
-        // Buscar em todos os usuários (simplificado)
-        const keys = Object.keys(localStorage).filter(key => key.startsWith('webp_images_'));
-        
-        for (const key of keys) {
-          const images = JSON.parse(localStorage.getItem(key) || '[]');
-          const filteredImages = images.filter(img => img.id !== imageId);
-          localStorage.setItem(key, JSON.stringify(filteredImages));
-        }
+        const userId = window.authManager.currentUser?.uid; // Obtenha o ID do usuário logado
+        if (!userId) return resolve(); // Se não houver usuário logado, não há nada a deletar
+        const key = `webp_images_${userId}`;
+        let images = JSON.parse(localStorage.getItem(key) || '[]');
+        images = images.filter(img => img.id !== imageId);
+        localStorage.setItem(key, JSON.stringify(images));
         resolve();
       } catch (error) {
         console.error('Erro ao deletar do LocalStorage:', error);
