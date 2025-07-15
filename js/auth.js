@@ -66,39 +66,58 @@ class AuthManager {
     const userPhoto = document.getElementById('user-photo');
     const userName = document.getElementById('user-name');
     const loginBtns = document.querySelectorAll('#login-btn, #login-btn-desktop');
-    const userImagesPanel = document.getElementById('user-images-panel');
+    const userImagesPanel = document.getElementById('user-files-panel');
+    const meusArquivosMenu = document.getElementById('meus-arquivos-menu');
 
     if (user) {
       // Usuário logado
       console.log('Usuário logado:', user.displayName);
-      
+
       // Mostrar informações do usuário
       userInfo.classList.remove('hidden');
       userPhoto.src = user.photoURL || 'assets/default-avatar.png';
       userName.textContent = user.displayName || user.email;
-      
+
       // Ocultar botões de login
       loginBtns.forEach(btn => btn.classList.add('hidden'));
-      
+
       // Mostrar painel de imagens do usuário
       if (userImagesPanel) {
         userImagesPanel.classList.remove('hidden');
         this.loadUserImages();
       }
-      
+
+      // Mostrar ou ocultar menu "Meus Arquivos" conforme existência de arquivos convertidos
+      if (meusArquivosMenu) {
+        window.storageManager.getUserImages(user.uid).then(images => {
+          if (images && images.length > 0) {
+            meusArquivosMenu.classList.remove('hidden');
+          } else {
+            meusArquivosMenu.classList.add('hidden');
+          }
+        }).catch(() => {
+          meusArquivosMenu.classList.add('hidden');
+        });
+      }
+
     } else {
       // Usuário não logado
       console.log('Usuário não logado');
-      
+
       // Ocultar informações do usuário
       userInfo.classList.add('hidden');
-      
+
       // Mostrar botões de login
       loginBtns.forEach(btn => btn.classList.remove('hidden'));
-      
+
       // Ocultar painel de imagens do usuário
       if (userImagesPanel) {
         userImagesPanel.classList.add('hidden');
+      }
+
+      // Ocultar menu "Meus Arquivos" para usuário não logado
+      if (meusArquivosMenu) {
+        meusArquivosMenu.classList.add('hidden');
       }
     }
   }
@@ -159,15 +178,15 @@ class AuthManager {
   }
 
   displayUserImages(images) {
-    const userImagesList = document.getElementById('user-images-list');
+    const userImagesList = document.getElementById('user-files-list');
     if (!userImagesList) return;
 
     if (images.length === 0) {
       userImagesList.innerHTML = `
         <div class="no-images">
-          <span class="empty-icon">🖼️</span>
-          <p>Nenhuma imagem salva ainda.</p>
-          <small>Converta uma imagem para WebP para vê-la aqui!<br>Otimize seu site e economize espaço agora mesmo 🚀</small>
+          <span class="empty-icon">📁</span>
+          <p>Nenhum arquivo convertido ainda.</p>
+          <small>Converta um arquivo para WebP para vê-lo aqui!<br>Otimize seu site e economize espaço agora mesmo 🚀</small>
         </div>
       `;
       return;
@@ -195,7 +214,7 @@ class AuthManager {
   }
 
   displayStorageStats(stats) {
-    const userImagesPanel = document.getElementById('user-images-panel');
+    const userImagesPanel = document.getElementById('user-files-panel');
     if (!userImagesPanel) return;
 
     const statsElement = userImagesPanel.querySelector('.storage-stats');
@@ -302,6 +321,11 @@ class AuthManager {
 
 // Inicializar quando o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', () => {
+  // Ocultar o menu "Meus Arquivos" por padrão ao carregar a página
+  const meusArquivosMenu = document.getElementById('meus-arquivos-menu');
+  if (meusArquivosMenu) {
+    meusArquivosMenu.classList.add('hidden');
+  }
   // Aguardar o Firebase estar carregado
   if (typeof firebase !== 'undefined') {
     window.authManager = new AuthManager();

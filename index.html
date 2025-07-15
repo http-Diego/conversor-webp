@@ -94,7 +94,7 @@
       </div>
       <ul class="nav-links" id="nav-links">
         <li><a href="#upload-area">Conversor</a></li>
-        <li><a href="#user-images-panel">Minhas Imagens</a></li>
+        <li id="meus-arquivos-menu" class="hidden"><a href="meus-arquivos.html">Meus Arquivos</a></li>
         <li><a href="sobre.html">Sobre</a></li>
         <li class="login-mobile"><button id="login-btn" class="login-btn">Entrar com Google</button></li>
       </ul>
@@ -185,15 +185,15 @@
     </section>
 
     <!-- Painel do Usuário: Imagens Armazenadas -->
-    <section id="user-images-panel" class="user-images-panel hidden">
-      <h2>Minhas Imagens WebP</h2>
+    <section id="user-files-panel" class="user-images-panel hidden">
+      <h2>Meus Arquivos WebP</h2>
       <div class="storage-stats">
         <!-- Estatísticas de armazenamento serão exibidas aqui -->
       </div>
-      <div id="user-images-list" class="user-images-list">
-        <!-- Imagens do usuário serão listadas aqui -->
+      <div id="user-files-list" class="user-images-list">
+        <!-- Arquivos do usuário serão listados aqui -->
       </div>
-      <small>Limite: 15 imagens. As mais antigas serão substituídas automaticamente.</small>
+      <small>Limite: 15 arquivos. Os mais antigos serão substituídos automaticamente.</small>
     </section>
 
     <!-- Rodapé -->

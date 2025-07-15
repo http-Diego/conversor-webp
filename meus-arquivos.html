@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meus Arquivos WebP | Conversor TeamKeepUp</title>
+  <link rel="stylesheet" href="assets/css/style.css?v=2.0">
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-content">
+      <div class="logo-area">
+        <a href="index.html">
+          <img src="https://www.teamkeepup.com.br/wp-content/uploads/2025/05/logo-teamkeepup@512x.png" alt="Logo TeamKeepUp" class="logo-img logo-light" />
+          <img src="https://www.teamkeepup.com.br/wp-content/uploads/2025/05/logo-teamkeepup-Light.png" alt="Logo TeamKeepUp" class="logo-img logo-dark" />
+        </a>
+      </div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html#upload-area">Conversor</a></li>
+        <li><a href="meus-arquivos.html">Meus Arquivos</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div id="user-info" class="user-info hidden">
+          <img id="user-photo" alt="Foto do usuário" class="user-photo" />
+          <span id="user-name"></span>
+          <button id="logout-btn" class="logout-btn">Sair</button>
+        </div>
+        <button id="login-btn-desktop" class="login-btn">Entrar com Google</button>
+      </div>
+    </div>
+  </nav>
+  <main class="container">
+    <section id="user-files-panel" class="user-images-panel">
+      <h2>Meus Arquivos WebP</h2>
+      <div class="storage-stats"></div>
+      <div id="user-files-list" class="user-images-list"></div>
+      <div id="no-files-message" class="no-images" style="display:none;">
+        <span class="empty-icon">📁</span>
+        <p>Nenhum arquivo convertido ainda.</p>
+        <small>Converta um arquivo para WebP para vê-lo aqui!<br>Otimize seu site e economize espaço agora mesmo 🚀</small>
+        <a href="index.html#upload-area" class="login-btn" style="margin-top:18px;display:inline-block;">Voltar para o Conversor</a>
+      </div>
+      <small>Limite: 15 arquivos. Os mais antigos serão substituídos automaticamente.</small>
+    </section>
+    <footer>
+      <p>Desenvolvido com <span class="heart" aria-label="amor">❤</span> por <strong>TeamKeepUp</strong></p>
+    </footer>
+  </main>
+  <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-storage-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/theme.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Aguarda o carregamento do AuthManager
+      function checkFiles() {
+        var list = document.getElementById('user-files-list');
+        var noFiles = document.getElementById('no-files-message');
+        if (list && noFiles) {
+          // Se não houver arquivos convertidos, mostra a mensagem e botão
+          if (!list.hasChildNodes() || list.innerHTML.trim() === '') {
+            noFiles.style.display = 'block';
+          } else {
+            noFiles.style.display = 'none';
+          }
+        }
+      }
+      setTimeout(checkFiles, 800); // Aguarda renderização dos arquivos
+    });
+  </script>
+</body>
+</html>
