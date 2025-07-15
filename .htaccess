@@ -12,8 +12,3 @@ Options -Indexes
 # RewriteCond %{HTTPS} off
 # RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L] 
 
-# Força www
-RewriteEngine On
-RewriteCond %{HTTP_HOST} !^www\. [NC]
-RewriteCond %{HTTP_HOST} ^([a-zA-Z0-9.-]+)$
-RewriteRule ^(.*)$ https://www.%1/$1 [R=301,L]
