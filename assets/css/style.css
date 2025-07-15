@@ -1,11 +1,31 @@
 /* Removido bloco de estilo do anúncio para atender exigências do Adsense */
+
+:root {
+  --bg-color: #fff;
+  --text-color: #222;
+  --text-secondary-color: #666;
+  --primary-color: #FFA726;
+  --primary-color-darker: #fb8c00;
+  --card-bg-color: #f7f7f7;
+  --shadow-color-light: rgba(255, 167, 38, 0.12);
+}
+
+html[data-theme="dark"] {
+  --bg-color: #111;
+  --text-color: #f3f3f3;
+  --text-secondary-color: #bbb;
+  --card-bg-color: #181a1b;
+  --shadow-color-light: rgba(255, 167, 38, 0.10);
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: 'Inter', Arial, sans-serif;
-  background: #fff !important;
+  background: var(--bg-color);
   min-height: 100vh;
-  color: #222;
+  color: var(--text-color);
+  transition: background 0.4s, color 0.3s;
 }
 
 /* Barra do menu fixa no topo */
@@ -57,7 +77,7 @@ body {
   padding: 0;
 }
 .nav-links li a {
-  color: #f3f3f3;
+  color: #222; /* Alterado de #f3f3f3 para ser visível no fundo branco */
   text-decoration: none;
   font-size: 1.08rem;
   font-weight: 500;

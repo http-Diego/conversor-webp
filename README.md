@@ -1,4 +1,52 @@
 # Conversor WebP Online – TeamKeepUp
+## Menu Dinâmico Unificado
+
+Agora o projeto utiliza um menu dinâmico centralizado, implementado em `assets/components/menu.js`.
+
+### Principais recursos do novo menu:
+- **Reutilizável**: O menu é gerado via JS e pode ser usado em qualquer página, bastando incluir `<div id="main-menu-container"></div>`.
+- **Personalização por parâmetros**: Os itens do menu, login/logout, nome e foto do usuário são controlados por parâmetros da função `renderMenu`.
+- **Login/Logout Google**: O botão de login chama diretamente o método do AuthManager. Quando o usuário está logado, o menu exibe nome, foto e botão de logout.
+- **Controle de tema**: O menu inclui o switcher sun-moon para alternar entre claro/escuro.
+- **Atualização automática**: O menu é atualizado conforme o estado de autenticação do usuário (login/logout) usando o evento `onAuthStateChanged` do Firebase.
+- **Padronização visual**: Mantém a logo, layout e estilo do menu original em todas as páginas.
+
+### Exemplo de uso:
+```js
+renderMenu({
+  showConversor: true,
+  showMeusArquivos: true,
+  showSobre: true,
+  showLogin: true,
+  showLogout: false,
+  userName: '',
+  userPhoto: '',
+  onLogin: () => window.authManager && window.authManager.signInWithGoogle(),
+  onLogout: () => window.authManager && window.authManager.signOut()
+});
+```
+
+### Integração com autenticação:
+- O menu é atualizado automaticamente para mostrar o nome/foto do usuário logado e o botão de logout.
+- Quando não logado, exibe o botão de login Google.
+
+### Benefícios
+- Redução de duplicidade de código.
+- Facilidade para implementar regras de acesso e personalização.
+- Pronto para futuras expansões (níveis de acesso, menus por perfil, etc).
+
+---
+
+## Histórico de mudanças
+- Removido menu fixo duplicado das páginas.
+- Centralizado controle de exibição de itens do menu.
+- Integrado login/logout Google ao menu dinâmico.
+- Mantido controle de tema claro/escuro.
+- Exibição do nome e foto do usuário logado no menu.
+
+---
+
+Para dúvidas ou sugestões, entre em contato com TeamKeepUp.
 
 Ferramenta web moderna para converter imagens JPG, PNG e WebP para o formato WebP, com foco em performance, usabilidade e integração com Firebase.
 
