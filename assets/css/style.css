@@ -1,3 +1,133 @@
+/* Modal de Login - TeamKeepUp */
+.login-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 1001;
+}
+.login-modal {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 32px #0003;
+  padding: 32px 28px 24px 28px;
+  z-index: 1002;
+  min-width: 320px;
+  max-width: 95vw;
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login-modal h2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.35em;
+  font-weight: 600;
+  color: #fb8c00;
+  margin-bottom: 18px;
+}
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.login-form input {
+  font-size: 1em;
+  padding: 10px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 7px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.login-form input:focus {
+  border-color: #fb8c00;
+}
+.login-btn-main {
+  background: #fb8c00;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 7px;
+  padding: 10px 0;
+  font-size: 1.08em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.login-btn-main:hover {
+  background: #ff9800;
+}
+.login-social {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 10px 0 0 0;
+}
+.login-btn-social {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+.login-btn-social.google {
+  border-color: #4285F4;
+}
+.login-btn-social.facebook {
+  border-color: #1877F3;
+}
+.login-btn-social:hover {
+  box-shadow: 0 2px 8px #0002;
+}
+.login-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
+.register-btn, .forgot-btn {
+  background: none;
+  border: none;
+  color: #fb8c00;
+  font-size: 0.98em;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0 6px;
+}
+.register-btn:hover, .forgot-btn:hover {
+  color: #ff9800;
+}
+.close-modal {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 1.7em;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.close-modal:hover {
+  color: #fb8c00;
+}
+.hidden {
+  display: none !important;
+}
+@media (max-width: 600px) {
+  .login-modal {
+    min-width: 90vw;
+    width: 98vw;
+    padding: 22px 8px 18px 8px;
+  }
+}
 /* Removido bloco de estilo do anúncio para atender exigências do Adsense */
 body {
   margin: 0;
